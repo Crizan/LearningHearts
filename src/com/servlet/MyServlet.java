@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +56,28 @@ public class MyServlet extends HttpServlet {
 
 		diabetes = Integer.parseInt(request.getParameter("diabetes"));
 
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/learningheart", "root", "");
+			String sql = "INSERT into user_info(Name,Age,Gender,Blood_pressure,Cholesterol,Family_History,Tobacco_Use,Alcohol_Use,Diabetes)"
+					+ " values(?,?,?,?,?,?,?,?,?)";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, name);
+			stmt.setInt(2, age);
+			stmt.setInt(3,gender);
+			stmt.setString(4,bloodPressure1+"/"+bloodPressure2);
+			stmt.setInt(5,cholesterol);
+			stmt.setInt(6,history);
+			stmt.setInt(7,smoking);
+			stmt.setInt(8,alcohol);
+			stmt.setInt(9,diabetes);
+			
+			stmt.executeUpdate();
+
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		InputInformation in = new InputInformation();
 
 		in.setName(name);
@@ -71,7 +97,6 @@ public class MyServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
 		dispatcher.forward(request, response);
 
-		
 	}
 
 }

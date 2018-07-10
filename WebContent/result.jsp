@@ -130,7 +130,8 @@
 					
 					changeBackgroundRed();</script>
 
-					<div id="text" style="text-align: center;margin-left: -41px;"><%
+					<div id="text" style="text-align: center; margin-left: -41px;">
+						<%
 					
 					 if(gender==1){
 						 out.println("Mr.");
@@ -138,8 +139,10 @@
 						 out.println("Ms.");
 					 }
 					
-					%><%=name %> you have a high
-						risk of having a heart attack. Please take care of your health!!</div>
+					%><%=name %>
+						, you have a high risk of having a heart attack. Please take care of
+						your health!!
+					</div>
 
 					<%
 						}
@@ -156,15 +159,17 @@
 					
 					changeBackgroundGreen();</script>
 
-					<div id="text" style="text-align: center;margin-left: -41px;"><%
+					<div id="text" style="text-align: center; margin-left: -41px;">
+						<%
 					 if(gender==1){
 						 out.println("Mr.");
 					 }else{
 						 out.println("Ms.");
 					 }
 					
-					%><%=name %> you have minimal
-						risk of a heart attack! Great!!</div>
+					%><%=name %>
+						, you have minimal risk of a heart attack! Great!!
+					</div>
 
 					<%
 						}
@@ -231,7 +236,10 @@
 					%>
 				</div>
 			</div>
+			
 			<div class='row-md-12' id='graphbox'>
+			
+			
 				<div class='col-md-6 col-sm-6'>
 					<canvas id='sbpgraph'></canvas>
 				</div>
@@ -240,18 +248,26 @@
 				</div>
 				<%
 				double usersbpprediction=0.4;
-					if(sbp>=130 && sbp<=139){
-						usersbpprediction = 0.5712;
+					if(sbp>=90 && sbp<=99){
+						usersbpprediction = 0.51;
+					}if(sbp>=100 && sbp<=109){
+						usersbpprediction = 0.53;
+					}if(sbp>=110 && sbp<=119){
+						usersbpprediction = 0.545;
+					}if(sbp>=120 && sbp<=129){
+						usersbpprediction = 0.552;
+					}if(sbp>=130 && sbp<=139){
+						usersbpprediction = 0.561;
 					}if(sbp>=140 && sbp<=149){
 						usersbpprediction = 0.5717;
 					}if(sbp>=150 && sbp<=159){
 						usersbpprediction = 0.570;
 					}if(sbp>=160 && sbp<=169){
-						usersbpprediction = 0.569;
+						usersbpprediction = 0.63;
 					}if(sbp>=170 && sbp<=179){
-						usersbpprediction = 0.565;
+						usersbpprediction = 0.65;
 					}if(sbp>=180 && sbp<=189){
-						usersbpprediction = 0.559;
+						usersbpprediction = 0.68;
 					}
 				
 					double userdbpprediction=0.4;
@@ -260,11 +276,11 @@
 					}if(dbp>=90 && dbp<=99){
 						userdbpprediction = 0.567;
 					}if(dbp>=100 && dbp<=109){
-						userdbpprediction = 0.5711;
+						userdbpprediction = 0.60;
 					}if(dbp>=110 && dbp<=119){
-						userdbpprediction = 0.5720;
+						userdbpprediction = 0.64;
 					}if(dbp>=120 && dbp<=129){
-						userdbpprediction = 0.566;
+						userdbpprediction = 0.62;
 					}
 				%>
 				<script type="text/javascript">
@@ -280,12 +296,24 @@
 							label: "Systolic",
 							data: [
 							{
-								x:0,
-								y:0
+								x: 90,
+								y: 0.51
+							},
+							{
+								x: 100,
+								y: 0.53
 							},	
 							{
+								x: 110,
+								y: 0.545
+							},
+							{
+								x: 120,
+								y: 0.552
+							},
+							{
 								x: 130,
-								y: 0.5712
+								y: 0.561
 							},
 							{
 								x: 140,
@@ -295,14 +323,14 @@
 								x: 150,
 								y: 0.570
 							},{
-								x: 160,
-								y: 0.569
+								x: 160,	
+								y: 0.63
 							},{
 								x: 170,
-								y: 0.565
+								y: 0.65
 							},{
 								x: 180,
-								y: 0.559
+								y: 0.68
 							}
 							],
 							backgroundColor:"#EE4E3B",
@@ -339,10 +367,7 @@
 							datasets: [{
 							label: "Diastolic",
 							data: [
-							{
-								x:0,
-								y:0
-							},	
+							
 							{
 								x: 80,
 								y: 0.5702
@@ -353,13 +378,13 @@
 							},
 							{
 								x: 100,
-								y: 0.5711
+								y: 0.60
 							},{
 								x: 110,
-								y: 0.5720
+								y: 0.64
 							},{
 								x: 120,
-								y: 0.566
+								y: 0.62
 							}
 							],
 							backgroundColor:"#EE4E3B",
@@ -420,9 +445,9 @@
 					}if(chol>=170 && chol<=199){
 						usercholprediction = 0.5705;
 					}if(chol>=200 && chol<=229){
-						usercholprediction = 0.569;
+						usercholprediction = 0.549;
 					}if(chol>=230 && chol<=259){
-						usercholprediction = 0.564;
+						usercholprediction = 0.60;
 					}if(chol>=260 && chol<=299){
 						usercholprediction = 0.620;
 					}
@@ -440,10 +465,7 @@
 							datasets: [{
 							label: "Age",
 							data: [
-							{
-								x:0,
-								y:0
-							},	
+								
 							{
 								x: 20,
 								y: 0.28
@@ -499,10 +521,7 @@
 							datasets: [{
 							label: "Cholestrol",
 							data: [
-							{
-								x:0,
-								y:0
-							},	
+								
 							{
 								x: 140,
 								y: 0.5715
@@ -513,10 +532,10 @@
 							},
 							{
 								x: 200,
-								y: 0.569
+								y: 0.549
 							},{
 								x: 230,
-								y: 0.564
+								y: 0.60
 							},{
 								x: 260,
 								y: 0.620

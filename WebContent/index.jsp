@@ -31,7 +31,9 @@
 					required : true
 				},
 				age : {
-					required : true
+					required : true,
+					
+					maxlength: 2
 				},
 				gender : {
 					required : true
@@ -63,7 +65,7 @@
 			        form1.submit();
 			  },
 			  showErrors: function (errorMap, errorList) {
-			        $("#error").html(this.numberOfInvalids() + " fields are empty");
+			        $("#error").html(this.numberOfInvalids() + " error in the form!");
 			        this.defaultShowErrors();
 			    },
 			    errorPlacement: function () {
